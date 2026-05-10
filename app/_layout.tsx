@@ -28,6 +28,13 @@ export const posthog = posthogApiKey ? new PostHog(posthogApiKey, {
   host: process.env.EXPO_PUBLIC_POSTHOG_HOST,
 }) : null;
 
+/**
+ * Root layout component that provides authentication, analytics, subscription state, fonts, and navigation for the app.
+ *
+ * Renders the app wrapped with Clerk (authentication), PostHog (analytics), and Subscriptions providers, and mounts the Expo Router navigation stack. While app fonts are loading, the component returns `null`.
+ *
+ * @returns The root JSX element composed of the providers and the navigation `Stack`, or `null` while fonts are loading.
+ */
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
     "sans-regular": require("../assets/fonts/PlusJakartaSans-Regular.ttf"),
