@@ -54,19 +54,21 @@ export default function SignUp() {
       }
 
       // Split name into first and last for Clerk
-      const [firstName, ...lastNameParts] = fullName.split(" ");
-      const lastName = lastNameParts.join(" ");
+      const nameParts = fullName.trim().split(" ");
+      const firstName = nameParts[0];
+      const lastName = nameParts.length > 1 ? nameParts.slice(1).join(" ") : "";
 
       // Update the user profile with the name
       await signUp.update({
         firstName,
-        lastName: lastName || "",
+        lastName,
       });
 
       // Send verification email
       await signUp.verifications.sendEmailCode();
       setPendingVerification(true);
     } catch (err: any) {
+
       setError("Something went wrong. Please try again.");
     } finally {
       setLoading(false);

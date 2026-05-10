@@ -1,5 +1,7 @@
 import { ClerkProvider, ClerkLoaded } from "@clerk/expo";
 import { tokenCache } from "@/lib/tokenCache";
+import PostHog, { PostHogProvider } from "posthog-react-native";
+import { SubscriptionsProvider } from "@/context/SubscriptionsContext";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -15,6 +17,10 @@ if (!publishableKey) {
     "Missing Publishable Key. Please set EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY in your .env"
   );
 }
+
+export const posthog = new PostHog(process.env.EXPO_PUBLIC_POSTHOG_API_KEY!, {
+  host: process.env.EXPO_PUBLIC_POSTHOG_HOST,
+});
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -36,7 +42,11 @@ export default function RootLayout() {
   return (
     <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
       <ClerkLoaded>
-        <Stack screenOptions={{ headerShown: false }} />
+        <PostHogProvider client={posthog}>
+          <SubscriptionsProvider>
+            <Stack screenOptions={{ headerShown: false }} />
+          </SubscriptionsProvider>
+        </PostHogProvider>
       </ClerkLoaded>
     </ClerkProvider>
   );

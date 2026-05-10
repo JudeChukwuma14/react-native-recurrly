@@ -47,7 +47,7 @@
             "./assets/fonts/PlusJakartaSans-ExtraLight.ttf",
             "./assets/fonts/PlusJakartaSans-Bold.ttf",
             "./assets/fonts/PlusJakartaSans-BoldItalic.ttf",
-            "./assets/fonts/PlusJakartaSans-ExtraLight.ttf", 
+            "./assets/fonts/PlusJakartaSans-ExtraLight.ttf",
             "./assets/fonts/PlusJakartaSans-ExtraLightItalic.ttf",
             "./assets/fonts/PlusJakartaSans-Light.ttf",
             "./assets/fonts/PlusJakartaSans-LightItalic.ttf",
@@ -60,7 +60,8 @@
             "./assets/fonts/PlusJakartaSans-ExtraBoldItalic.ttf"
           ]
         }
-      ]
+      ],
+      "expo-localization"
     ],
     "experiments": {
       "typedRoutes": true,

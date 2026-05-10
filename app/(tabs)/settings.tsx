@@ -25,17 +25,19 @@ const Settings = () => {
       <View className="bg-card p-6 rounded-3xl border border-border mb-6">
         <View className="flex-row items-center gap-5">
           <View className="relative">
-            {user?.imageUrl ? (
+            {user?.imageUrl && !user.imageUrl.includes("default-user") ? (
               <Image source={{ uri: user.imageUrl }} className="size-20 rounded-full" />
             ) : (
               <View className="size-20 rounded-full bg-accent items-center justify-center">
-                <Text className="text-3xl font-sans-bold text-white">
-                  {user?.firstName?.[0] || "U"}
+                <Text className="text-2xl font-sans-bold text-white uppercase">
+                  {user?.firstName?.[0]}
+                  {user?.lastName?.[0]}
                 </Text>
               </View>
             )}
             <View className="absolute bottom-0 right-0 size-6 bg-success rounded-full border-2 border-card" />
           </View>
+
           <View className="flex-1">
             <Text className="text-2xl font-sans-bold text-primary">
               {user?.fullName || "User Name"}
