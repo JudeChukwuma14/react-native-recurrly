@@ -1,4 +1,4 @@
-import "../../global.css"
+import "@/global.css"
 import { FlatList, Image, Text, View } from "react-native";
 import { styled } from "nativewind";
 import { SafeAreaView as RNSafeAreaView } from "react-native-safe-area-context";
@@ -21,7 +21,7 @@ export default function App() {
     <SafeAreaView className="flex-1 bg-background p-5">
 
       <FlatList
-        ListHeaderComponent={() => (
+        ListHeaderComponent={() => ( 
           <>
             <View className="mb-2.5 flex-row items-center justify-between">
               <View className="flex-row items-center">
@@ -53,7 +53,7 @@ export default function App() {
               />
             </View>
 
-            <ListHeading title="All Subscription" />
+            <ListHeading title="All Subscriptions" />
           </>
         )}
 
