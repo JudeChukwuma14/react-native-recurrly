@@ -12,10 +12,12 @@ import UpcomingSubscription from "@/components/UpcomingSubscription";
 import SubscriptionCard from "@/components/SubscriptionCard";
 import { useState } from "react";
 
+import { useUser } from "@clerk/expo";
+
 const SafeAreaView = styled(RNSafeAreaView)
 
-
 export default function App() {
+  const { user } = useUser();
   const [expandedSubscription, setExpandedSubscription] = useState<string | null>(null)
   return (
     <SafeAreaView className="flex-1 bg-background p-5">
@@ -25,9 +27,16 @@ export default function App() {
           <>
             <View className="mb-2.5 flex-row items-center justify-between">
               <View className="flex-row items-center">
-                <Image source={images.avatar} className="size-16 rounded-full" />
-                <Text className="ml-4 text-2xl font-sans-bold text-primary">{HOME_USER.name}</Text>
+                {user?.imageUrl ? (
+                  <Image source={{ uri: user.imageUrl }} className="size-16 rounded-full" />
+                ) : (
+                  <Image source={images.avatar} className="size-16 rounded-full" />
+                )}
+                <Text className="ml-4 text-2xl font-sans-bold text-primary">
+                  {user?.firstName ? `${user.firstName}` : HOME_USER.name}
+                </Text>
               </View>
+
               <Image source={icons.add} className="size-10 rounded-full border border-border" />
             </View>
 
