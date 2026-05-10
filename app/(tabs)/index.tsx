@@ -19,6 +19,11 @@ import { useUser } from "@clerk/expo";
 
 const SafeAreaView = styled(RNSafeAreaView)
 
+/**
+ * Main application screen that displays user info, remaining balance, upcoming subscriptions, and the subscriptions list with a create-subscription modal.
+ *
+ * @returns The React element for the home tab UI, including the header with avatar and add button, a remaining-balance card, a horizontal list of upcoming subscriptions, a vertical list of all subscriptions with expandable cards, and a modal used to create new subscriptions.
+ */
 export default function App() {
   const { user } = useUser();
   const { subscriptions, addSubscription } = useSubscriptions();

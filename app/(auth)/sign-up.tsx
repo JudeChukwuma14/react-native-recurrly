@@ -17,6 +17,11 @@ import { styled } from "nativewind";
 
 const SafeAreaView = styled(RNSafeAreaView);
 
+/**
+ * Render the two-step sign-up screen that creates an account with email/password, sends a verification code, and verifies the code to finalize sign-up and navigate to the app root.
+ *
+ * @returns The sign-up screen's JSX element.
+ */
 export default function SignUp() {
   const { signUp, fetchStatus } = useSignUp();
 
