@@ -53,7 +53,13 @@ export default function App() {
               </View>
 
 
-              <Pressable onPress={() => setIsModalVisible(true)}>
+              <Pressable 
+                onPress={() => setIsModalVisible(true)}
+                accessibilityRole="button"
+                accessibilityLabel="Create new subscription"
+                accessible={true}
+                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+              >
                 <Image source={icons.add} className="size-10 rounded-full border border-border" />
               </Pressable>
             </View>

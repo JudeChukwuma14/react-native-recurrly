@@ -18,9 +18,15 @@ if (!publishableKey) {
   );
 }
 
-export const posthog = new PostHog(process.env.EXPO_PUBLIC_POSTHOG_API_KEY!, {
+const posthogApiKey = process.env.EXPO_PUBLIC_POSTHOG_API_KEY;
+
+if (!posthogApiKey) {
+  console.warn("Missing PostHog API Key. Please set EXPO_PUBLIC_POSTHOG_API_KEY in your .env");
+}
+
+export const posthog = posthogApiKey ? new PostHog(posthogApiKey, {
   host: process.env.EXPO_PUBLIC_POSTHOG_HOST,
-});
+}) : null;
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -42,7 +48,7 @@ export default function RootLayout() {
   return (
     <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
       <ClerkLoaded>
-        <PostHogProvider client={posthog}>
+        <PostHogProvider client={posthog!}>
           <SubscriptionsProvider>
             <Stack screenOptions={{ headerShown: false }} />
           </SubscriptionsProvider>

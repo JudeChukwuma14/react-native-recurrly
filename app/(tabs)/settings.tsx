@@ -30,8 +30,8 @@ const Settings = () => {
             ) : (
               <View className="size-20 rounded-full bg-accent items-center justify-center">
                 <Text className="text-2xl font-sans-bold text-white uppercase">
-                  {user?.firstName?.[0]}
-                  {user?.lastName?.[0]}
+                  {user?.firstName?.[0] || user?.primaryEmailAddress?.emailAddress?.[0] || "?"}
+                  {user?.lastName?.[0] || ""}
                 </Text>
               </View>
             )}

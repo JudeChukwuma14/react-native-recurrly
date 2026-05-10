@@ -19,7 +19,7 @@ const Subscriptions = () => {
       sub.category?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       sub.plan?.toLowerCase().includes(searchQuery.toLowerCase())
     );
-  }, [searchQuery]);
+  }, [searchQuery, subscriptions]);
 
   const toggleExpand = (id: string) => {
     setExpandedId(prev => prev === id ? null : id);
